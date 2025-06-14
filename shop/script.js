@@ -3,6 +3,8 @@ let men_items = document.querySelector('#men_items');
 let women_items = document.querySelector('#women_items');
 let jewelery_items = document.querySelector('#jewellery');
 let electronics_items = document.querySelector('#electronics');
+//Cart array
+let cart = [];
 
 // Section wrappers
 let men_section = document.querySelector('#men_section');
@@ -40,6 +42,8 @@ if (!currentUser) {
         for (let item of men) {
             let sizesHTML = item.sizes?.join(',') || 'N/A';
             let colorsHTML = item.colors?.map(color => `<div class="circle" style="background-color: ${color}"></div>`).join('') || '';
+            // let item_id = item.id;
+            // console.log(item_id);
             men_items.innerHTML += `
                 <div class="item">
                     <img src="${item.image}" alt="Item" />
@@ -54,7 +58,7 @@ if (!currentUser) {
                         </div>
                         <div class="row">Rating: ${item.rating.rate}</div>
                     </div>
-                    <button class="addBtn">Add to Cart</button>
+                    <button class="addBtn" data-id="${item.id}">Add to Cart</button>
                 </div>
             `;
         }
@@ -77,7 +81,7 @@ if (!currentUser) {
                         </div>
                         <div class="row">Rating: ${item.rating.rate}</div>
                     </div>
-                    <button class="addBtn">Add to Cart</button>
+                    <button class="addBtn" data-id="${item.id}">Add to Cart</button>
                 </div>
             `;
         }
@@ -92,7 +96,7 @@ if (!currentUser) {
                         <div class="price">$${item.price}</div>
                         <div class="row">Rating: ${item.rating.rate}</div>
                     </div>
-                    <button class="addBtn">Add to Cart</button>
+                    <button class="addBtn" data-id="${item.id}">Add to Cart</button>
                 </div>
             `;
         }
@@ -107,7 +111,7 @@ if (!currentUser) {
                         <div class="price">$${item.price}</div>
                         <div class="row">Rating: ${item.rating.rate}</div>
                     </div>
-                    <button class="addBtn">Add to Cart</button>
+                    <button class="addBtn" data-id="${item.id}">Add to Cart</button>
                 </div>
             `;
         }
@@ -145,8 +149,38 @@ if (!currentUser) {
         electronics_filter.addEventListener('click', () => setActiveFilter('electronics'));
 
         // Apply saved filter on load
-        let savedFilter = localStorage.getItem('activeFilter') || 'all';
+        localStorage.removeItem('activeFilter');
+        let savedFilter = 'all';
         setActiveFilter(savedFilter);
+
+        //Add to Cart
+        // let addBtn = document.querySelectorAll('.addBtn');
+        let addBtns = document.querySelectorAll('.addBtn');
+        addBtns.forEach(button => {
+            button.addEventListener('click', (e) => {
+                console.log('Add to Cart clicked');
+                console.log(e);
+                console.log();
+                // Get the product ID from button's data-id
+                let productId = parseInt(e.currentTarget.getAttribute('data-id'));
+                console.log('Product ID:', productId);
+                // Find the selected product
+                let selectedProduct = products.find(p => p.id === productId);
+                console.log('Selected Product:', selectedProduct);
+                if (selectedProduct) {
+                    let alreadyInCart = cart.some(p => p.id === selectedProduct.id);
+                    if (!alreadyInCart) {
+                        cart.push(selectedProduct);
+                        localStorage.setItem('cart', JSON.stringify(cart));
+                        alert('Item added to cart!');
+                    } else {
+                        alert('Item already in cart!');
+                    }
+                } else {
+                    console.error('Product not found!');
+                }
+            });
+        });
 
     } else {
         // Fetch and enhance product data
