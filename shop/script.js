@@ -1,110 +1,21 @@
-// let currentUser = JSON.parse(localStorage.getItem('loggedInUser'));
-// let men_items = document.querySelector('#men_items');
-// let women_items = document.querySelector('#women_items');
-// let jewelery = document.querySelector('#jewellery');
-// let electronics = document.querySelector('#electronics');
-
-
-// if (!currentUser) {
-//     alert("Please login first!!!");
-//     window.location.href = "/Projects/SCJS/login.html";
-// } else {
-//     console.log("Current User:", currentUser);
-//     // const product = {
-//     //     id: 1,
-//     //     title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
-//     //     price: 109.95,
-//     //     description:
-//     //         "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
-//     //     category: "men's clothing",
-//     //     image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-//     //     rating: { rate: 3.9, count: 120 },
-//     // };
-//     // console.log("Product:", product);
-//     let colors = ['red', 'blue', 'green', 'yellow', 'black'];
-//     let sizes = ['S', 'M', 'L', 'XL', 'XXL'];
-//     if (localStorage.getItem('products')) {
-//         console.log("Products already exist in localStorage.");
-//         let products = JSON.parse(localStorage.getItem('products'));
-//         console.log("Products:", products);
-//         let men = products.filter((item) => item.category == "men's clothing");
-//         console.log(men);
-//         let jewelery = products.filter((item) => item.category == "jewelery");
-//         console.log(jewelery);
-//         let electronics = products.filter((item) => item.category == "electronics");
-//         console.log(electronics);
-//         let women = products.filter((item) => item.category == "women's clothing");
-//         console.log(women);
-//         for (let item of men) {
-//             let sizesHTML = item.sizes.join(','); // Create string like "S,M,L"
-//             let colorsHTML = item.colors.map(color => `<div class="circle" style="background-color: ${color}"></div>`).join('');
-
-//             men_items.innerHTML += `
-//                 <div class="item">
-//                     <img src="${item.image}" alt="Item" />
-//                     <div class="info">
-//                         <div class="row">
-//                             <div class="price">$${item.price}</div>
-//                             <div class="sized">${sizesHTML}</div>
-//                         </div>
-//                         <div class="colors">
-//                             Colors:
-//                             <div class="row">
-//                                 ${colorsHTML}
-//                             </div>
-//                         </div>
-//                         <div class="row">Rating: ${item.rating.rate}</div>
-//                     </div>
-//                     <button class="addBtn">Add to Cart</button>
-//                 </div>
-//             `;
-//         }
-//         for (let item of women) {
-//             let sizesHTML = item.sizes.join(','); // Create string like "S,M,L"
-//             let colorsHTML = item.colors.map(color => `<div class="circle" style="background-color: ${color}"></div>`).join('');
-//             women_items.innerHTML += `
-//                 <div class="item">
-//                     <img src="${item.image}" alt="Item" />
-//                     <div class="info">
-//                         <div class="row">
-//                             <div class="price">$${item.price}</div>
-//                             <div class="sized">${sizesHTML}</div>
-//                         </div>
-//                         <div class="colors">
-//                             Colors:
-//                             <div class="row">
-//                                 ${colorsHTML}
-//                             </div>
-//                         </div>
-//                         <div class="row">Rating: ${item.rating.rate}</div>
-//                     </div>
-//                     <button class="addBtn">Add to Cart</button>
-//                 </div>
-//             `;
-//         }
-
-//     } else {
-//         fetch("https://fakestoreapi.com/products").then((response) => response.json()).then((data) => {
-//             console.log("Products:", data);
-//             let newData = data.map((item) => {
-//                 return {
-//                     ...item,
-//                     colors: colors.slice(0, Math.floor(Math.random() * colors.length) + 1),
-//                     sizes: sizes.slice(0, Math.floor(Math.random() * sizes.length) + 1),
-//                 };
-//             });
-//             console.log("New Products:", newData);
-//             localStorage.setItem('products', JSON.stringify(newData));
-//         });
-//     }
-// }
-
-
 let currentUser = JSON.parse(localStorage.getItem('loggedInUser'));
 let men_items = document.querySelector('#men_items');
 let women_items = document.querySelector('#women_items');
 let jewelery_items = document.querySelector('#jewellery');
 let electronics_items = document.querySelector('#electronics');
+
+// Section wrappers
+let men_section = document.querySelector('#men_section');
+let women_section = document.querySelector('#women_section');
+let jewelery_section = document.querySelector('#jewellery_section');
+let electronics_section = document.querySelector('#electronics_section');
+
+// Categories Buttons
+let all_filter = document.querySelector('#all_filter');
+let men_filter = document.querySelector('#men_filter');
+let women_filter = document.querySelector('#women_filter');
+let jewellery_filter = document.querySelector('#jewellery_filter');
+let electronics_filter = document.querySelector('#electronics_filter');
 
 if (!currentUser) {
     alert("Please login first!!!");
@@ -112,8 +23,8 @@ if (!currentUser) {
 } else {
     console.log("Current User:", currentUser);
 
-    let colors = ['red', 'blue', 'green', 'yellow', 'black'];
-    let sizes = ['S', 'M', 'L', 'XL', 'XXL'];
+    let colors = ['Red', 'Blue', 'Green', 'White', 'Black'];
+    let sizes = ['S', 'M', 'L', 'XL'];
 
     if (localStorage.getItem('products')) {
         console.log("Products already exist in localStorage.");
@@ -121,19 +32,14 @@ if (!currentUser) {
         console.log("Products:", products);
 
         let men = products.filter((item) => item.category === "men's clothing");
-        console.log("Men", men);
         let women = products.filter((item) => item.category === "women's clothing");
-        console.log("Women", women);
         let jewelery = products.filter((item) => item.category === "jewelery");
-        console.log("Jewelery:", jewelery);
         let electronics = products.filter((item) => item.category === "electronics");
-        console.log("Electronics:", electronics);
 
         // Render men's clothing
         for (let item of men) {
             let sizesHTML = item.sizes?.join(',') || 'N/A';
             let colorsHTML = item.colors?.map(color => `<div class="circle" style="background-color: ${color}"></div>`).join('') || '';
-
             men_items.innerHTML += `
                 <div class="item">
                     <img src="${item.image}" alt="Item" />
@@ -157,7 +63,6 @@ if (!currentUser) {
         for (let item of women) {
             let sizesHTML = item.sizes?.join(',') || 'N/A';
             let colorsHTML = item.colors?.map(color => `<div class="circle" style="background-color: ${color}"></div>`).join('') || '';
-
             women_items.innerHTML += `
                 <div class="item">
                     <img src="${item.image}" alt="Item" />
@@ -207,13 +112,47 @@ if (!currentUser) {
             `;
         }
 
+        // Filter handling
+        function setActiveFilter(filter) {
+            localStorage.setItem('activeFilter', filter);
+
+            // Reset all classes and visibility
+            [all_filter, men_filter, women_filter, jewellery_filter, electronics_filter].forEach(btn => btn.classList.remove('active'));
+            [men_section, women_section, jewelery_section, electronics_section].forEach(section => {
+                section.style.display = 'none';
+                section.classList.remove('grid-view');
+            });
+
+            if (filter === 'all') {
+                all_filter.classList.add('active');
+                men_section.style.display = 'block';
+                women_section.style.display = 'block';
+                jewelery_section.style.display = 'block';
+                electronics_section.style.display = 'block';
+            } else {
+                document.getElementById(`${filter}_filter`).classList.add('active');
+                let selectedSection = document.getElementById(`${filter}_section`);
+                selectedSection.style.display = 'block';
+                selectedSection.classList.add('grid-view');
+            }
+        }
+
+        // Event listeners
+        all_filter.addEventListener('click', () => setActiveFilter('all'));
+        men_filter.addEventListener('click', () => setActiveFilter('men'));
+        women_filter.addEventListener('click', () => setActiveFilter('women'));
+        jewellery_filter.addEventListener('click', () => setActiveFilter('jewellery'));
+        electronics_filter.addEventListener('click', () => setActiveFilter('electronics'));
+
+        // Apply saved filter on load
+        let savedFilter = localStorage.getItem('activeFilter') || 'all';
+        setActiveFilter(savedFilter);
+
     } else {
         // Fetch and enhance product data
         fetch("https://fakestoreapi.com/products")
             .then((response) => response.json())
             .then((data) => {
-                console.log("Products:", data);
-
                 let newData = data.map((item) => {
                     if (item.category === "men's clothing" || item.category === "women's clothing") {
                         return {
@@ -222,16 +161,14 @@ if (!currentUser) {
                             sizes: sizes.slice(0, Math.floor(Math.random() * sizes.length) + 1),
                         };
                     } else {
-                        // Omit colors and sizes completely
-                        let { colors, sizes, ...rest } = item;
+                        // Strip sizes and colors for non-clothing
+                        const { colors, sizes, ...rest } = item;
                         return rest;
                     }
                 });
 
-                console.log("New Products:", newData);
                 localStorage.setItem('products', JSON.stringify(newData));
                 location.reload(); // Reload to trigger rendering
             });
     }
-
 }
