@@ -1,1 +1,49 @@
 /* Write your styles here */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Navbar */
+nav {
+    background-color: black;
+    padding: 1rem;
+}
+
+.logo {
+    color: white;
+    font-size: 0.9rem;
+}
+
+/* Container */
+.container {
+    padding: 2rem;
+    max-width: 600px;
+    margin: auto;
+    text-align: center;
+}
+
+.container h1 {
+    margin: 2rem 0 1rem;
+    font-size: 1.8rem;
+}
+
+.container input {
+    width: 100%;
+    padding: 0.7rem;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    border: 1px solid #aaa;
+}
+
+.container button {
+    padding: 0.6rem 1.2rem;
+    background-color: black;
+    color: white;
+    border: none;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    width: 150px;
+}

@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <form action="#">
+    <!-- <form action="#">
         <label for="fname">First Name: </label>
         <input type="text" id="fname" />
         <br />
@@ -32,7 +32,24 @@
         <input type="password" id="cnpassword"  style="display: none;" />
         <br />
         <button id="update">Update</button>
-    </form>
+    </form> -->
+    <nav>
+        <div class="logo">Profile</div>
+    </nav>
+
+    <section class="container">
+        <h1>My Profile</h1>
+        <input type="text" id="fname" placeholder="First Name" />
+        <input type="text" id="lname" placeholder="Last Name" />
+        <button id="saveInfo">Save Info</button>
+
+        <h1>Edit Password</h1>
+        <input type="password" id="oldPassword" placeholder="Old Password" />
+        <input type="password" id="newPassword" placeholder="New Password" />
+        <input type="password" id="confirmNewPassword" placeholder="Confirm New Password" />
+        <button id="changePassword">Change Password</button>
+        <button id="logout">Logout</button>
+    </section>
     <!-- [if lt IE 7]>
     <p class="browsehappy">
         You are using an <strong>outdated</strong> browser. Please
