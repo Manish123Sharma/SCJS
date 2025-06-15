@@ -1,0 +1,179 @@
+/* Base Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f9f9f9;
+    color: #111;
+}
+
+/* Navbar */
+nav {
+    background-color: #000;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav .brand a {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: white;
+}
+
+nav .nav-items a {
+    color: white;
+    margin-left: 1.5rem;
+    font-size: 1rem;
+}
+
+/* Title */
+.main-title {
+    text-align: center;
+    font-size: 2.2rem;
+    margin: 1.5rem 0;
+    color: #333;
+}
+
+/* Layout */
+.cart-container {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    padding: 0 2rem 2rem;
+}
+
+/* Products Grid */
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 20px;
+    flex: 2;
+}
+
+.product {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    text-align: center;
+    transition: transform 0.2s ease;
+}
+
+.product:hover {
+    transform: translateY(-5px);
+}
+
+.product img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+
+.product p {
+    margin: 5px 0;
+    font-size: 0.95rem;
+    color: #333;
+}
+
+.product button {
+    background: black;
+    color: white;
+    padding: 0.6rem;
+    border: none;
+    width: 100%;
+    border-radius: 5px;
+    margin-top: 0.8rem;
+    cursor: pointer;
+}
+
+.product button:hover {
+    background-color: #444;
+}
+
+/* Checkout Section */
+.checkout {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    min-width: 280px;
+    flex: 1;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.checkout h3 {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.checkout_items {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1rem;
+}
+
+.checkout_items li {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    font-size: 0.9rem;
+    border-bottom: 1px solid #eee;
+}
+
+.total {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.checkout-btn {
+    background-color: black;
+    color: white;
+    border: none;
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.checkout-btn:hover {
+    background-color: #333;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .cart-container {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 1rem;
+    }
+
+    .products {
+        grid-template-columns: 1fr;
+    }
+
+    .checkout {
+        margin-top: 20px;
+    }
+
+    nav .nav-items {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+}
