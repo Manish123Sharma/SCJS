@@ -9,7 +9,7 @@ let total_price = 0;
 
 if (!currentUser) {
     alert("Please login first!!!");
-    window.location.href = "/Projects/SCJS/login/login.html";
+    window.location.href = "../login/login.html";
 } else {
     login_a.style.display = 'none';
     signup_a.style.display = 'none';
