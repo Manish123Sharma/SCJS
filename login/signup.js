@@ -38,7 +38,7 @@ signup.addEventListener('click', (e) => {
 
             localStorage.setItem("users", JSON.stringify(users));
             alert("User registered successfully!!!");
-            window.location.href = '/Projects/SCJS/shop/index.html'
+            window.location.href = '../shop/index.html'
             // error.textContent = "";
             // fname.value = "";
             // lname.value = "";
