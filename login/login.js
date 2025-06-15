@@ -24,7 +24,7 @@ login.addEventListener('click', (e) => {
             let obj = filteredUsers[0];
             if (obj.email === loginemail.value && obj.password === loginpassword.value) {
                 alert("Login successful!!!");
-                window.location.href = "./profile/index.html";
+                window.location.href = "/Projects/SCJS/shop/index.html";
                 localStorage.setItem("loggedInUser", JSON.stringify({
                     ...obj,
                     token: generateToken(),

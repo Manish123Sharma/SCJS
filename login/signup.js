@@ -38,12 +38,13 @@ signup.addEventListener('click', (e) => {
 
             localStorage.setItem("users", JSON.stringify(users));
             alert("User registered successfully!!!");
-            error.textContent = "";
-            fname.value = "";
-            lname.value = "";
-            email.value = "";
-            pass.value = "";
-            cpass.value = "";
+            window.location.href = '/Projects/SCJS/shop/index.html'
+            // error.textContent = "";
+            // fname.value = "";
+            // lname.value = "";
+            // email.value = "";
+            // pass.value = "";
+            // cpass.value = "";
         }
     }
 });
