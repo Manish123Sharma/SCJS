@@ -10,7 +10,7 @@ document.getElementById("rzp-button1").onclick = function (e) {
     let options = {
         key: "rzp_test_PpeiXeXlrb88Lu", // Enter the Key ID generated from the Dashboard
         amount: 300 * 100, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
-        currency: "INR",
+        currency: "USD",
         name: "MyShop Checkout",
         description: "This is your order", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
         theme: {
