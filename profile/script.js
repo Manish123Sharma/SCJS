@@ -17,6 +17,8 @@ if (!currentUser) {
     alert("Please login first!!!");
     window.location.href = "/Projects/SCJS/login/login.html";
 } else {
+    login_a.style.display = 'none';
+    signup_a.style.display = 'none';
     // Prefill profile info
     fName.value = currentUser.fname;
     lName.value = currentUser.lname;

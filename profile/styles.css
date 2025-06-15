@@ -6,15 +6,33 @@
     font-family: Arial, sans-serif;
 }
 
-/* Navbar */
-nav {
-    background-color: black;
-    padding: 1rem;
+a {
+    color: white;
+    text-decoration: none;
 }
 
-.logo {
+/* Navbar */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     color: white;
-    font-size: 0.9rem;
+    position: sticky;
+    z-index: 100;
+    top: 0;
+    background-color: black;
+    border-bottom: 1px solid white;
+    padding: 1rem;
+    font-size: 1rem;
+}
+
+nav .brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+nav .nav-items a {
+    margin: 0 1rem;
 }
 
 /* Container */
