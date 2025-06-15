@@ -1,97 +1,94 @@
-// Write your script here
+// DOM Elements
 let fName = document.querySelector("#fname");
 let lName = document.querySelector("#lname");
-let oldPassword = document.querySelector("#opassword");
-let newPassword = document.querySelector("#npassword");
-let cnPassword = document.querySelector("#cnpassword");
-let updateProfile = document.querySelector("#update");
-let currntUser = JSON.parse(localStorage.getItem('loggedInUser'));
-let checkbox = document.querySelector("#updatePassword");
-let emailID = document.querySelector("#email");
-let allUsers = JSON.parse(localStorage.getItem('users'));
-console.log("All Users:", allUsers);
-let crntdetail = [];
-console.log("Current User:", currntUser);
-if (!currntUser) {
+let oldPassword = document.querySelector("#oldPassword");
+let newPassword = document.querySelector("#newPassword");
+let confirmNewPassword = document.querySelector("#confirmNewPassword");
+let saveInfoBtn = document.querySelector("#saveInfo");
+let changePasswordBtn = document.querySelector("#changePassword");
+let logoutBtn = document.querySelector("#logout");
+
+// Fetch user data
+let currentUser = JSON.parse(localStorage.getItem("loggedInUser"));
+let allUsers = JSON.parse(localStorage.getItem("users")) || [];
+
+// Redirect if not logged in
+if (!currentUser) {
     alert("Please login first!!!");
     window.location.href = "/Projects/SCJS/login/login.html";
 } else {
-    let id = currntUser.id;
-    console.log("User ID:", id);
-    if (!allUsers) {
-        alert("No users found in local storage!!!");
-    } else {
-        for (let i = 0; i < allUsers.length; i++) {
-            if (allUsers[i].id === id) {
-                console.log("User found:", allUsers[i]);
-                crntdetail = allUsers[i];
-                fName.value = allUsers[i].fname;
-                lName.value = allUsers[i].lname;
-                emailID.value = allUsers[i].email;
-            }
-        }
-        console.log("Current Details:", crntdetail);
-        checkbox.addEventListener("change", () => {
-            if (checkbox.checked) {
-                oldPassword.style.display = "block";
-                newPassword.style.display = "block";
-                cnPassword.style.display = "block";
-            } else {
-                oldPassword.style.display = "none";
-                newPassword.style.display = "none";
-                cnPassword.style.display = "none";
-            }
-        });
-        oldPassword.addEventListener('blur', () => {
-            if (oldPassword.value !== crntdetail.password) {
-                alert("Old password is incorrect!");
-                oldPassword.value = "";
-            }
-        });
-        emailID.addEventListener('blur', () => {
-            let filteredUsers = allUsers.filter((user) => user.email === emailID.value);
-            if (filteredUsers.length > 0) {
-                alert("User already exists!!!");
-                emailID.value = crntdetail.email;
-            }
-        });
-    }
+    // Prefill profile info
+    fName.value = currentUser.fname;
+    lName.value = currentUser.lname;
 }
 
-updateProfile.addEventListener('click', (e) => {
-    e.preventDefault();
-    if (fName.value === "" || lName.value === "") {
+// Save Profile Info
+saveInfoBtn.addEventListener("click", () => {
+    if (fName.value.trim() === "" || lName.value.trim() === "") {
         alert("Please fill in all fields!");
+        return;
     }
-    if (checkbox.checked) {
-        if (oldPassword.value === "" || newPassword.value === "" || cnPassword.value === "") {
-            alert("Please fill in all password fields!");
-        }
-        if (newPassword.value !== cnPassword.value) {
-            alert("New password and confirm password do not match!");
-            return;
-        }
-        let filteredUsers = allUsers.filter((user) => user.email === emailID.value);
-        if (filteredUsers.length > 0) {
-            alert("User already exists!!!");
-            emailID.value = crntdetail.email;
-        }
-    }
+
+    // Update user in allUsers list
     for (let i = 0; i < allUsers.length; i++) {
-        if (allUsers[i].id === currntUser.id) {
-            allUsers[i] = {
-                ...allUsers[i],
-                fname: fName.value,
-                lname: lName.value,
-                email: emailID.value,
-                password: checkbox.checked ? newPassword.value : allUsers[i].password,
-                updatedAT: new Date(),
-            };
+        if (allUsers[i].id === currentUser.id) {
+            allUsers[i].fname = fName.value.trim();
+            allUsers[i].lname = lName.value.trim();
+            allUsers[i].updatedAt = new Date();
             break;
         }
     }
+
+    // Update local storage
     localStorage.setItem("users", JSON.stringify(allUsers));
-    localStorage.setItem("loggedInUser", JSON.stringify(allUsers.find(u => u.id === currntUser.id)));
-    console.log("Updated User:", allUsers.find(u => u.id === currntUser.id));
-    alert("Profile updated successfully!");
+    const updatedUser = allUsers.find(user => user.id === currentUser.id);
+    localStorage.setItem("loggedInUser", JSON.stringify(updatedUser));
+    alert("Profile info updated successfully!");
+});
+
+// Change Password
+changePasswordBtn.addEventListener("click", () => {
+    if (
+        oldPassword.value.trim() === "" ||
+        newPassword.value.trim() === "" ||
+        confirmNewPassword.value.trim() === ""
+    ) {
+        alert("Please fill in all password fields!");
+        return;
+    }
+
+    // Check old password
+    if (oldPassword.value !== currentUser.password) {
+        alert("Old password is incorrect!");
+        oldPassword.value = "";
+        return;
+    }
+
+    // Confirm match
+    if (newPassword.value !== confirmNewPassword.value) {
+        alert("New password and confirm password do not match!");
+        return;
+    }
+
+    // Update user password
+    for (let i = 0; i < allUsers.length; i++) {
+        if (allUsers[i].id === currentUser.id) {
+            allUsers[i].password = newPassword.value.trim();
+            allUsers[i].updatedAt = new Date();
+            break;
+        }
+    }
+
+    // Update local storage
+    localStorage.setItem("users", JSON.stringify(allUsers));
+    const updatedUser = allUsers.find(user => user.id === currentUser.id);
+    localStorage.setItem("loggedInUser", JSON.stringify(updatedUser));
+    alert("Password changed successfully!");
+});
+
+// Logout Function
+logoutBtn.addEventListener("click", () => {
+    localStorage.removeItem("loggedInUser");
+    alert("Logged out successfully!");
+    window.location.href = "/Projects/SCJS/index.html";
 });
