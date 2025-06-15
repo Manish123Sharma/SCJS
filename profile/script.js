@@ -15,7 +15,7 @@ let allUsers = JSON.parse(localStorage.getItem("users")) || [];
 // Redirect if not logged in
 if (!currentUser) {
     alert("Please login first!!!");
-    window.location.href = "/Projects/SCJS/login/login.html";
+    window.location.href = "../login/login.html";
 } else {
     login_a.style.display = 'none';
     signup_a.style.display = 'none';
@@ -92,5 +92,5 @@ changePasswordBtn.addEventListener("click", () => {
 logoutBtn.addEventListener("click", () => {
     localStorage.removeItem("loggedInUser");
     alert("Logged out successfully!");
-    window.location.href = "/Projects/SCJS/index.html";
+    window.location.href = "./index.html";
 });
