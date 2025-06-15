@@ -18,12 +18,16 @@ let men_filter = document.querySelector('#men_filter');
 let women_filter = document.querySelector('#women_filter');
 let jewellery_filter = document.querySelector('#jewellery_filter');
 let electronics_filter = document.querySelector('#electronics_filter');
+let login_a = document.querySelector('#login_a');
+let signup_a = document.querySelector('#signup_a');
 
 if (!currentUser) {
     alert("Please login first!!!");
     window.location.href = "/Projects/SCJS/login/login.html";
 } else {
     console.log("Current User:", currentUser);
+    login_a.style.display = 'none';
+    signup_a.style.display = 'none';
 
     let colors = ['Red', 'Blue', 'Green', 'White', 'Black'];
     let sizes = ['S', 'M', 'L', 'XL'];
@@ -48,6 +52,7 @@ if (!currentUser) {
                 <div class="item">
                     <img src="${item.image}" alt="Item" />
                     <div class="info">
+                        <div class="product_title">${item.title}</div>
                         <div class="row">
                             <div class="price">$${item.price}</div>
                             <div class="sized">${sizesHTML}</div>
@@ -71,6 +76,7 @@ if (!currentUser) {
                 <div class="item">
                     <img src="${item.image}" alt="Item" />
                     <div class="info">
+                        <div class="product_title">${item.title}</div>
                         <div class="row">
                             <div class="price">$${item.price}</div>
                             <div class="sized">${sizesHTML}</div>
