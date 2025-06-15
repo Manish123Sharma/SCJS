@@ -14,7 +14,7 @@ let crntdetail = [];
 console.log("Current User:", currntUser);
 if (!currntUser) {
     alert("Please login first!!!");
-    window.location.href = "/Projects/SCJS/login.html";
+    window.location.href = "/Projects/SCJS/login/login.html";
 } else {
     let id = currntUser.id;
     console.log("User ID:", id);

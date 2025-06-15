@@ -2,7 +2,7 @@ let currentUser = JSON.parse(localStorage.getItem('loggedInUser'));
 
 if (!currentUser) {
     alert("Please login first!!!");
-    window.location.href = "/Projects/SCJS/login.html";
+    window.location.href = "/Projects/SCJS/login/login.html";
 } else {
     console.log("Current User:", currentUser);
     if (localStorage.getItem('cart')) {

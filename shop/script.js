@@ -21,7 +21,7 @@ let electronics_filter = document.querySelector('#electronics_filter');
 
 if (!currentUser) {
     alert("Please login first!!!");
-    window.location.href = "/Projects/SCJS/login.html";
+    window.location.href = "/Projects/SCJS/login/login.html";
 } else {
     console.log("Current User:", currentUser);
 

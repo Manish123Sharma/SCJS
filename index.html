@@ -9,26 +9,30 @@
 </head>
 
 <body>
-    <form action="#">
-        <label for="fname">First Name: </label>
-        <input type="text" id="fname" />
-        <br />
-        <label for="lname">Last Name: </label>
-        <input type="text" id="lname" />
-        <br />
-        <label for="email">Email: </label>
-        <input type="email" id="email" />
-        <br />
-        <label for="password">Password: </label>
-        <input type="password" id="password" />
-        <br />
-        <label for="cpassword">Confirm Password: </label>
-        <input type="password" id="cpassword" />
-        <br />
-        <button id="signup">Sign-Up</button>
-    </form>
-    <p id="error"></p>
-    <p id="success"></p>
+    <nav>
+        <div class="logo">MeShop.</div>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Login</a></li>
+            <li><a href="#">Signup</a></li>
+            <li><a href="#">My Cart</a></li>
+            <li><a href="#">Profile</a></li>
+        </ul>
+    </nav>
+
+    <section class="main">
+        <div class="text-content">
+            <h1>MeShop.</h1>
+            <p>Your First Shop built on HTML, CSS AND JavaScript</p>
+            <div class="button-group">
+                <button id="login_btn" class="black-btn">Login</button>
+                <button id="register_btn" class="white-btn">Signup</button>
+            </div>
+        </div>
+        <div class="image-content">
+            <img src="landingPagePic.png" />
+        </div>
+    </section>
     <script src="script.js"></script>
 </body>
 
