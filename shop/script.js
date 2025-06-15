@@ -24,7 +24,7 @@
 
 // if (!currentUser) {
 //     alert("Please login first!!!");
-//     window.location.href = "/Projects/SCJS/login/login.html";
+//     window.location.href = "../login/login.html";
 // } else {
 //     console.log("Current User:", currentUser);
     // login_a.style.display = 'none';
@@ -246,7 +246,7 @@ let electronics_items = document.querySelector('#electronics');
 
 if (!currentUser) {
     alert("Please login first!!!");
-    window.location.href = "/Projects/SCJS/login/login.html";
+    window.location.href = "../login/login.html";
 } else {
     console.log("Current User:", currentUser);
     login_a.style.display = 'none';
